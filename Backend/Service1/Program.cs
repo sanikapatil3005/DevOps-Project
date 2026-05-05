@@ -1,37 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Enable CORS (Frontend connect karega)
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", policy =>
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader());
-});
-
 var app = builder.Build();
 
-// ❌ HTTPS avoid (Docker/EC2 ke liye)
- // app.UseHttpsRedirection();
+// ❌ REMOVE if present
+// app.UseHttpsRedirection();
 
-// ✅ Use CORS
-app.UseCors("AllowAll");
+// ✅ Root endpoint
+app.MapGet("/", () => "🚀 Service1 is running");
 
-// ✅ Health Check Endpoint
-app.MapGet("/", () => new {
-    service = "Service1",
-    status = "Running 🚀"
-});
-
-// ✅ Main API Endpoint
+// ✅ API endpoint
 app.MapGet("/api/data", () =>
 {
-    return new
-    {
+    return new {
         message = "Hello from Service1 🎯",
-        time = DateTime.Now.ToString("HH:mm:ss"), // clean format
-        service = "Service1"
+        time = DateTime.Now.ToString()
     };
 });
 
-app.Run();
+// ✅ VERY IMPORTANT
+app.Run("http://0.0.0.0:5001");

@@ -1,0 +1,36 @@
+name: CI/CD without Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd ~/DevOps-Project || git clone https://github.com/sanikapatil3005/DevOps-Project.git
+          cd DevOps-Project
+          git pull origin main
+
+          cd Backend/Service1
+
+          # stop old app
+          pkill dotnet || true
+
+          # build
+          dotnet build
+
+          # run in background
+          nohup dotnet run --urls "http://0.0.0.0:5001" > output.log 2>&1 &
