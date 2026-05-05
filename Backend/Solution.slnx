@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Service1/Service1.csproj" />
+  <Project Path="Service2/Service2.csproj" />
+  <Project Path="Service3/Service3.csproj" />
+</Solution>

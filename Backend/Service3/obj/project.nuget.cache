@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "/Q4Q5XPy0+A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sudarshan K.D Patil\\Downloads\\my-devops-project\\Backend\\Service3\\Service3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sudarshan K.D Patil\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
+    "C:\\Users\\Sudarshan K.D Patil\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
